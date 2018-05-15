@@ -19,7 +19,7 @@ namespace Xview.Lander.Login {
             //固定的三维边框
             //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             //出现在屏幕正中央
-            //this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
             //没有标题
             this.FormBorderStyle = FormBorderStyle.None;                
@@ -42,29 +42,6 @@ namespace Xview.Lander.Login {
             this.Controls.Add(this.label1);
         }
 
-        /*private void timer1_Tick(object sender, EventArgs e) 
-        { 
-            if (this.Opacity < 1) 
-            { 
-                //每单位时间增加的透明度数 
-                this.Opacity += 0.05; 
-            } 
-            else 
-            { 
-                this.timer1.Stop(); 
-                this.Hide(); 
-                //frmWelcome.Show(); 
-            } 
-        } */
-
-        public static void SetMid(Form form)
-        {
-            // 每次在用户屏幕居中窗体
-            form.SetBounds((Screen.GetBounds(form).Width / 2) - (form.Width / 2),
-            (Screen.GetBounds(form).Height / 2) - (form.Height / 2),
-            form.Width, form.Height, BoundsSpecified.Location);
-        }
-
         /// 覆盖OnResize方法, 处理窗体第一次被显示时的消息
         protected override void OnResize(EventArgs e)
         {
@@ -78,9 +55,8 @@ namespace Xview.Lander.Login {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
  
-            //timer1_Tick();
             OnResize(e);
-            SetMid(this);
+            //SetMid(this);
             // 设置按钮的位置
             this.textbox.Top = (this.Height - this.textbox.Height) / 2;
             this.textbox.Left = (this.Width - this.textbox.Width) / 2;

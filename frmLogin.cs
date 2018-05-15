@@ -9,10 +9,12 @@ using System.Text;
 
 namespace Xview.Lander.Login
 {
-    public partial class frmLogin : Form    
+    public class frmLogin : Form    
     {
+        // 控件
     	private TextBox textbox_username;
     	private TextBox textbox_password;
+        private TextBox textbox_domain;
     	private Button btnOK;
     	private Button btnExit;
 
@@ -34,15 +36,22 @@ namespace Xview.Lander.Login
             this.textbox_username = new TextBox();
             this.textbox_username.Height = 40;
             this.textbox_username.Width  = 180;
-            this.textbox_username.Location = new Point(81, 32);
             this.textbox_username.Text = "用户名";
+            this.textbox_username.Location = new Point(81, 32);
 
             //密码框
             this.textbox_password = new TextBox();
             this.textbox_password.Height = 60;
             this.textbox_password.Width  = 180;
-            this.textbox_password.Location = new Point(81, 62);
             this.textbox_password.Text = "密码";
+            this.textbox_password.Location = new Point(81, 62);
+
+            //域名
+            this.textbox_domain = new TextBox();
+            this.textbox_domain.Height = 60;
+            this.textbox_domain.Width  = 180;
+            this.textbox_domain.Text = "域名";
+            this.textbox_domain.Location = new Point(81, 92);
 
             //确定按钮
         	this.btnOK = new Button();
@@ -61,6 +70,7 @@ namespace Xview.Lander.Login
             //添加控件
         	this.Controls.Add(this.textbox_username);
         	this.Controls.Add(this.textbox_password);
+            this.Controls.Add(this.textbox_domain);
         	this.Controls.Add(this.btnOK);
         	this.Controls.Add(this.btnExit);
 
@@ -70,6 +80,7 @@ namespace Xview.Lander.Login
             System.Threading.Thread.Sleep(2000);  //欢迎窗口停留时间2s
             fw.Close();
             //InitializeComponent();
+
         }
 
         /// 覆盖OnLoad方法, 处理窗体第一次被显示时的消息
@@ -82,11 +93,11 @@ namespace Xview.Lander.Login
 
             // 设置按钮的位置
             this.btnExit.Top = (this.Height - this.btnExit.Height) / 2;
-            this.btnExit.Left = (this.Width - this.btnExit.Width) / 4;
+            this.btnExit.Left = (this.Width - this.btnExit.Width) / 5;
         }
 
-
-        private void btnOK_Click(object sender, EventArgs e)     //点击确定按钮事件
+        //点击确定按钮事件
+        private void btnOK_Click(object sender, EventArgs e)     
         {
            // MessageBox.Show("登录成功！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //以下开始显示主窗体 并关闭登录窗体
@@ -94,8 +105,8 @@ namespace Xview.Lander.Login
             this.Close();
         }
 
-
-        private void btnExit_Click(object sender, EventArgs e)    //单击关闭按钮事件
+        //单击关闭按钮事件
+        private void btnExit_Click(object sender, EventArgs e)    
         {
             Application.Exit();
         }
