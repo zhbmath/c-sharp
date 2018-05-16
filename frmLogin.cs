@@ -15,8 +15,8 @@ namespace Xview.Lander.Login
     	private TextBox textbox_username;
     	private TextBox textbox_password;
         private TextBox textbox_domain;
-    	private Button btnOK;
-    	private Button btnExit;
+    	private Button  btnOK;
+    	private Button  btnExit;
 
         public frmLogin()     
         {
@@ -30,42 +30,57 @@ namespace Xview.Lander.Login
             //固定的三维边框
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             //出现在屏幕正中央
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition   = System.Windows.Forms.FormStartPosition.CenterScreen;
+            //自适应大小
+            //this.SizeToContent = SizeToContent.WidthAndHeight;
+
+            //没有标题
+            this.FormBorderStyle = FormBorderStyle.None;                
+            //任务栏不显示                
+            this.ShowInTaskbar = false;
+
+            int tbox_height = 60;
+            int tbox_width = 180;
+            int btn_height = 50;
+            int btn_width  = 80;
 
             //用户名
             this.textbox_username = new TextBox();
-            this.textbox_username.Height = 40;
-            this.textbox_username.Width  = 180;
+            this.textbox_username.Height = tbox_height;
+            this.textbox_username.Width  = tbox_width;
             this.textbox_username.Text = "用户名";
-            this.textbox_username.Location = new Point(81, 32);
+            this.textbox_username.Location = new Point(this.Left+160, this.Top+this.Height/2);
 
             //密码框
             this.textbox_password = new TextBox();
-            this.textbox_password.Height = 60;
-            this.textbox_password.Width  = 180;
+            this.textbox_password.Height = tbox_height;
+            this.textbox_password.Width  = tbox_width;
             this.textbox_password.Text = "密码";
-            this.textbox_password.Location = new Point(81, 62);
+            this.textbox_password.Location = new Point(this.Left+160, this.Top+this.Height/2+40);
 
-            //域名
+            //域名框
             this.textbox_domain = new TextBox();
-            this.textbox_domain.Height = 60;
-            this.textbox_domain.Width  = 180;
+            this.textbox_domain.Height = tbox_height;
+            this.textbox_domain.Width  = tbox_width;
             this.textbox_domain.Text = "域名";
-            this.textbox_domain.Location = new Point(81, 92);
+            this.textbox_domain.Location = new Point(this.Left+160, this.Top+this.Height/2+80);
 
             //确定按钮
         	this.btnOK = new Button();
-        	this.btnOK.Text = "Ok";
-        	this.btnOK.Height = 40;
-        	this.btnOK.Width = 50;
+        	this.btnOK.Text = "确定";
+        	this.btnOK.Height = btn_height;
+        	this.btnOK.Width = btn_width;
+        	this.btnOK.Location = new Point(this.Left+130, this.Bottom-10);
         	this.btnOK.Click += new EventHandler(btnOK_Click);
 
             //退出按钮
         	this.btnExit = new Button();
-        	this.btnExit.Text = "Exit";
-        	this.btnExit.Height = 40;
-        	this.btnExit.Width = 50;
+        	this.btnExit.Text = "退出";
+        	this.btnExit.Height = btn_height;
+        	this.btnExit.Width = btn_width;
+        	this.btnExit.Location = new Point(this.Left+290, this.Bottom-10);
         	this.btnExit.Click += new EventHandler(btnExit_Click);
+
 
             //添加控件
         	this.Controls.Add(this.textbox_username);
@@ -75,10 +90,10 @@ namespace Xview.Lander.Login
         	this.Controls.Add(this.btnExit);
 
             //在此添加代码，在登陆窗体显示前先显示欢迎窗体
-            frmWelcome fw = new frmWelcome();
-            fw.Show();  //show出欢迎窗口
-            System.Threading.Thread.Sleep(2000);  //欢迎窗口停留时间2s
-            fw.Close();
+            //frmWelcome fw = new frmWelcome();
+            //fw.Show();  //欢迎窗口
+            //System.Threading.Thread.Sleep(2000);  //停留时间2s
+            //fw.Close();
             //InitializeComponent();
 
         }
@@ -87,19 +102,32 @@ namespace Xview.Lander.Login
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
-            // 设置按钮的位置
-            this.btnOK.Top = (this.Height - this.btnOK.Height) / 2;
-            this.btnOK.Left = (this.Width - this.btnOK.Width) / 2;
+            string fbImage = "D:\\csharp\\test.bmp";   
+            Bitmap bmp = new Bitmap(fbImage); //图片路径
+            this.BackgroundImage = bmp;//设置背景图片
+            this.BackgroundImageLayout = ImageLayout.Stretch; //设置背景图片自动适应
+
+            int Desk_Width  = Screen.PrimaryScreen.WorkingArea.Width;  
+            int Desk_Height = Screen.PrimaryScreen.WorkingArea.Height; 
+
+            this.Width  = this.textbox_username.Width * 3 ;
+            this.Height = this.textbox_username.Height * 20 ; 
+
+            this.Top  = Desk_Height/4 ;
+            this.Left = Desk_Width/3  ;
 
             // 设置按钮的位置
-            this.btnExit.Top = (this.Height - this.btnExit.Height) / 2;
-            this.btnExit.Left = (this.Width - this.btnExit.Width) / 5;
+            //this.btnOK.Top = this.Top + this.textbox_username.Height*4  ;
+            //this.btnOK.Left = this.Left + this.btnOK.Width;
+
+            // 设置按钮的位置
+            //this.btnExit.Top = this.Top - this.textbox_username.Height*5 ;
+            //this.btnExit.Left = this.Left + this.btnExit.Width *3;
         }
 
         //点击确定按钮事件
         private void btnOK_Click(object sender, EventArgs e)     
         {
-           // MessageBox.Show("登录成功！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //以下开始显示主窗体 并关闭登录窗体
             this.DialogResult = DialogResult.OK;
             this.Close();

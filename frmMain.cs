@@ -78,7 +78,7 @@ namespace Xview.Lander.Login {
 
             //Splash.LoadAndRun(new frmMain());
 
-            // 显示主窗体前，显示登录窗口
+            // 显示主窗体前，显示登录窗口gg
 	        frmLogin frmLogin = new frmLogin();
             if (frmLogin.ShowDialog() == DialogResult.OK)
             {   
