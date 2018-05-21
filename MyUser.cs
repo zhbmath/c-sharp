@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MemoryPassword  
+namespace Xview.Lander.Login
 {  
     [Serializable]  //表示这个类可以被序列化  
     public class User
@@ -20,17 +20,16 @@ namespace MemoryPassword
         {
             get
             {
-                if (_loingPassword != "")
-                    return MyEncrypt.DecryptDES(_loingPassword);
+                if (_loingPassword != "") return MyEncrypt.DecryptDES(_loingPassword);
                 return _loingPassword;
             }
             set { _loingPassword = value; }
         }
   
-        public User(string loginName, string loginPwd)
+        public User(string loginName, string loginPswd)
         {
             _loginName = loginName;
-            _loingPassword = loginPwd;
+            _loingPassword = loginPswd;
         }
     }
 }

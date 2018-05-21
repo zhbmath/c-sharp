@@ -16,15 +16,16 @@ namespace Xview.Lander.Login {
             Application.SetCompatibleTextRenderingDefault(false);
  
             //Application.Run(new frmMain());   // 注视掉原来的启动
+            Application.Run(new frmLogin());   // 注视掉原来的启动
             //Splash.LoadAndRun(new frmMain()); // 启动一个新的线程
 
             // 显示主窗体前，显示登录窗口gg
-	        frmLogin frmLogin = new frmLogin();
-            if (frmLogin.ShowDialog() == DialogResult.OK)
-            {   
-                //Application.Run(new frmMain()); // 显示主窗体
-                Application.Run(new FormDisplay()); // 显示主窗体
-            }
+	        //frmLogin frmLogin = new frmLogin();
+            //if (frmLogin.ShowDialog() == DialogResult.OK)
+            //{   
+            //    //Application.Run(new frmMain()); // 显示主窗体
+            //    Application.Run(new FormDisplay()); // 显示主窗体
+            //}
         }
     }
 }

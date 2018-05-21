@@ -5,7 +5,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
   
-namespace MemoryPassword
+namespace Xview.Lander.Login
 {  
     public class MyEncrypt
     {  
